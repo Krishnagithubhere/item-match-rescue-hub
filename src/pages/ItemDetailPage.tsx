@@ -114,36 +114,42 @@ const ItemDetailPage = () => {
                     )}
                   </div>
                   
-                  {(item.status === 'lost' || item.status === 'found') && (
+                  {item.status === 'lost' && (
                     <div className="mt-6 space-y-3">
                       <p className="text-sm text-muted-foreground">Update status:</p>
-                      {item.status === 'lost' && (
-                        <Button 
-                          onClick={() => handleStatusUpdate('claimed')}
-                          variant="outline"
-                          className="w-full"
-                        >
-                          Mark as Claimed (I found it)
-                        </Button>
-                      )}
-                      {item.status === 'found' && (
-                        <Button 
-                          onClick={() => handleStatusUpdate('claimed')}
-                          variant="outline"
-                          className="w-full"
-                        >
-                          Mark as Claimed (This is mine)
-                        </Button>
-                      )}
-                      {item.status === 'claimed' && (
-                        <Button 
-                          onClick={() => handleStatusUpdate('returned')}
-                          variant="default"
-                          className="w-full"
-                        >
-                          Mark as Returned
-                        </Button>
-                      )}
+                      <Button 
+                        onClick={() => handleStatusUpdate('claimed')}
+                        variant="outline"
+                        className="w-full"
+                      >
+                        Mark as Claimed (I found it)
+                      </Button>
+                    </div>
+                  )}
+                  
+                  {item.status === 'found' && (
+                    <div className="mt-6 space-y-3">
+                      <p className="text-sm text-muted-foreground">Update status:</p>
+                      <Button 
+                        onClick={() => handleStatusUpdate('claimed')}
+                        variant="outline"
+                        className="w-full"
+                      >
+                        Mark as Claimed (This is mine)
+                      </Button>
+                    </div>
+                  )}
+                  
+                  {item.status === 'claimed' && (
+                    <div className="mt-6 space-y-3">
+                      <p className="text-sm text-muted-foreground">Update status:</p>
+                      <Button 
+                        onClick={() => handleStatusUpdate('returned')}
+                        variant="default"
+                        className="w-full"
+                      >
+                        Mark as Returned
+                      </Button>
                     </div>
                   )}
                   

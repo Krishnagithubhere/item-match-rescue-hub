@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
@@ -14,7 +13,7 @@ import { Calendar as CalendarIcon, ArrowLeft } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useItems } from "@/contexts/ItemsContext";
-import { ItemFormData } from "@/types/item";
+import { ItemFormData, ItemCategory } from "@/types/item";
 import { categoryOptions } from "@/utils/itemUtils";
 
 const ReportItemPage = () => {
@@ -52,7 +51,7 @@ const ReportItemPage = () => {
       setFormData(prev => ({
         ...prev,
         [section]: {
-          ...prev[section as keyof typeof prev],
+          ...(prev[section as keyof typeof prev] as Record<string, string>),
           [field]: value
         }
       }));
@@ -226,7 +225,7 @@ const ReportItemPage = () => {
                     <Label htmlFor="category">Category</Label>
                     <Select
                       value={formData.category}
-                      onValueChange={(value) => handleChange("category", value)}
+                      onValueChange={(value: ItemCategory) => handleChange("category", value)}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select category" />
